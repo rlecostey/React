@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>React Exercise 3</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"></head>
+<body>
+
+    <div class="app"></div>
+
+    <script type="text/babel">
+
+        class Product extends React.Component {
+            constructor() {
+                super();
+                this.state = {quantity: 0};
+                this.addToCart = this.addToCart.bind(this);
+            }
+
+            addToCart() {
+                this.setState({quantity: this.state.quantity + 1})
+            }
+
+            render() {
+                return (
+                    <div className="container">
+                        <h2>{this.props.name}</h2>
+                        <p>Quantity : {this.state.quantity}</p>
+                        <button className="btn btn-primary" onClick={this.addToCart}>Add to cart</button>
+                    </div>
+                );
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Product name="Product 1" />
+                        <Product name="Product 2" />
+                    </div>
+                );
+            }
+        }
+        ReactDOM.render(<App />, document.querySelector('.app'));
+    </script>
+
+</body>
+</html>
